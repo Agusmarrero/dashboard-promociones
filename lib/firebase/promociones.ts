@@ -71,8 +71,8 @@ export async function createPromocion(
   const firestore = assertDb()
   const docRef = await addDoc(collection(firestore, COLLECTION), {
     ...data,
-    vigenciaDesde: Timestamp.fromDate(data.vigenciaDesde),
-    vigenciaHasta: Timestamp.fromDate(data.vigenciaHasta),
+    vigenciaDesde: data.vigenciaDesde ? Timestamp.fromDate(data.vigenciaDesde) : null,
+    vigenciaHasta: data.vigenciaHasta ? Timestamp.fromDate(data.vigenciaHasta) : null,
     creadaEn: Timestamp.now(),
   })
   return docRef.id

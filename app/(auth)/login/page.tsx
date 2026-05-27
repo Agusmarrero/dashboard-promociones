@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Fuel } from 'lucide-react'
+import Image from 'next/image'
 import { signIn, signInWithGoogle } from '@/lib/firebase/auth'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -49,9 +49,7 @@ export default function LoginPage() {
       <div className="flex flex-col w-full lg:w-1/2 bg-white">
         {/* Top bar */}
         <div className="flex items-center gap-3 px-10 py-6 border-b border-slate-100">
-          <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-blue-600 shadow-md">
-            <Fuel className="h-4 w-4 text-white" />
-          </div>
+          <Image src="/assets/icono.png" alt="PromoFlow" width={36} height={36} className="shrink-0" />
           <span className="text-xl font-bold text-slate-900 tracking-tight">PromoFlow</span>
         </div>
 

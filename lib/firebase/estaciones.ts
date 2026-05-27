@@ -25,12 +25,16 @@ export async function getEstaciones(): Promise<Estacion[]> {
   const firestore = assertDb()
   const q = query(collection(firestore, COLLECTION), orderBy('nombre', 'asc'))
   const snapshot = await getDocs(q)
-  return snapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-    creadaEn: doc.data().creadaEn?.toDate(),
-    actualizadaEn: doc.data().actualizadaEn?.toDate(),
-  })) as Estacion[]
+  return snapshot.docs.map((doc) => {
+    const data = doc.data()
+    return {
+      id: doc.id,
+      ...data,
+      esCliente: data.esCliente === true || !!data.clienteId,
+      creadaEn: data.creadaEn?.toDate(),
+      actualizadaEn: data.actualizadaEn?.toDate(),
+    }
+  }) as Estacion[]
 }
 
 export async function getEstacionById(id: string): Promise<Estacion | null> {
@@ -38,11 +42,13 @@ export async function getEstacionById(id: string): Promise<Estacion | null> {
   const docRef = doc(firestore, COLLECTION, id)
   const docSnap = await getDoc(docRef)
   if (!docSnap.exists()) return null
+  const data = docSnap.data()
   return {
     id: docSnap.id,
-    ...docSnap.data(),
-    creadaEn: docSnap.data().creadaEn?.toDate(),
-    actualizadaEn: docSnap.data().actualizadaEn?.toDate(),
+    ...data,
+    esCliente: data.esCliente === true || !!data.clienteId,
+    creadaEn: data.creadaEn?.toDate(),
+    actualizadaEn: data.actualizadaEn?.toDate(),
   } as Estacion
 }
 
@@ -54,12 +60,16 @@ export async function getEstacionesByDepartamento(departamento: string): Promise
     orderBy('nombre', 'asc')
   )
   const snapshot = await getDocs(q)
-  return snapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-    creadaEn: doc.data().creadaEn?.toDate(),
-    actualizadaEn: doc.data().actualizadaEn?.toDate(),
-  })) as Estacion[]
+  return snapshot.docs.map((doc) => {
+    const data = doc.data()
+    return {
+      id: doc.id,
+      ...data,
+      esCliente: data.esCliente === true || !!data.clienteId,
+      creadaEn: data.creadaEn?.toDate(),
+      actualizadaEn: data.actualizadaEn?.toDate(),
+    }
+  }) as Estacion[]
 }
 
 export async function getEstacionesClientes(): Promise<Estacion[]> {

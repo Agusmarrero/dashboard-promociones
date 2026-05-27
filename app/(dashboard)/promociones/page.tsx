@@ -94,7 +94,7 @@ export default function PromocionesPage() {
           }
         />
       ) : (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {filteredPromociones.map((promo) => (
             <PromoCard key={promo.id} promocion={promo} />
           ))}

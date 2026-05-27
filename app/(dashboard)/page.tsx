@@ -228,10 +228,9 @@ export default function DashboardPage() {
                       </Link>
                       <div className="flex items-center gap-2 text-xs text-slate-500 mt-1">
                         <Calendar className="h-3 w-3" />
-                        Hasta{' '}
-                        {format(promo.vigenciaHasta, 'dd/MM/yyyy', {
-                          locale: es,
-                        })}
+                        {promo.vigenciaHasta
+                          ? `Hasta ${format(promo.vigenciaHasta, 'dd/MM/yyyy', { locale: es })}`
+                          : 'Hasta agotar stock'}
                       </div>
                     </div>
                     <Badge className="bg-green-100 text-green-700">Activa</Badge>

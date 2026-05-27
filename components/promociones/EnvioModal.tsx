@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import Image from 'next/image'
 import { Send, Check, AlertCircle, Loader2 } from 'lucide-react'
 import type { Promocion, Cliente, DestinatarioEnvio } from '@/types'
 import { Button } from '@/components/ui/button'
@@ -179,7 +180,10 @@ export function EnvioModal({
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-lg">
         <DialogHeader>
-          <DialogTitle>Enviar promoción por WhatsApp</DialogTitle>
+          <DialogTitle className="flex items-center gap-2">
+            <Image src="/assets/whatsapp.png" alt="WhatsApp" width={20} height={20} />
+            Enviar promoción por WhatsApp
+          </DialogTitle>
         </DialogHeader>
 
         {status === 'idle' && (

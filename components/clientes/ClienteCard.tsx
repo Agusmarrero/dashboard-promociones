@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { User, Phone, Mail, Building2 } from 'lucide-react'
+import Image from 'next/image'
+import { Phone, Mail, Building2 } from 'lucide-react'
 import type { Cliente } from '@/types'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -13,7 +14,11 @@ interface ClienteCardProps {
 
 export function ClienteCard({ cliente }: ClienteCardProps) {
   return (
-    <Card className="hover:shadow-md transition-shadow">
+    <Card className="overflow-hidden hover:shadow-md transition-shadow">
+      <div className="relative h-24 bg-slate-100">
+        <Image src="/assets/cliente.png" alt="Cliente" fill className="object-cover opacity-70" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/60 to-transparent" />
+      </div>
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
           <CardTitle className="text-base font-medium">

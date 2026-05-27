@@ -1,8 +1,9 @@
+import Image from 'next/image'
 import { LucideIcon } from 'lucide-react'
 import { ReactNode } from 'react'
 
 interface EmptyStateProps {
-  icon: LucideIcon
+  icon?: LucideIcon
   title: string
   description: string
   action?: ReactNode
@@ -16,9 +17,13 @@ export function EmptyState({
 }: EmptyStateProps) {
   return (
     <div className="flex flex-col items-center justify-center py-12 text-center">
-      <div className="rounded-full bg-slate-100 p-4">
-        <Icon className="h-8 w-8 text-slate-400" />
-      </div>
+      {Icon ? (
+        <div className="rounded-full bg-slate-100 p-4">
+          <Icon className="h-8 w-8 text-slate-400" />
+        </div>
+      ) : (
+        <Image src="/assets/empty.png" alt="Sin resultados" width={96} height={96} className="opacity-70" />
+      )}
       <h3 className="mt-4 text-lg font-medium text-slate-900">{title}</h3>
       <p className="mt-1 text-sm text-slate-500 max-w-sm">{description}</p>
       {action && <div className="mt-6">{action}</div>}

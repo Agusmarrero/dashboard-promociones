@@ -172,12 +172,19 @@ export default function PromocionDetailPage({
         </Badge>
         <div className="flex items-center gap-2 text-sm text-slate-500">
           <Calendar className="h-4 w-4" />
-          <span>
-            {format(promocion.vigenciaDesde, "d 'de' MMMM", { locale: es })} -{' '}
-            {format(promocion.vigenciaHasta, "d 'de' MMMM 'de' yyyy", {
-              locale: es,
-            })}
-          </span>
+          {promocion.vigenciaDesde || promocion.vigenciaHasta ? (
+            <span>
+              {promocion.vigenciaDesde
+                ? format(promocion.vigenciaDesde, "d 'de' MMMM", { locale: es })
+                : '?'}{' '}
+              -{' '}
+              {promocion.vigenciaHasta
+                ? format(promocion.vigenciaHasta, "d 'de' MMMM 'de' yyyy", { locale: es })
+                : 'sin vencimiento'}
+            </span>
+          ) : (
+            <span>Hasta agotar stock</span>
+          )}
         </div>
       </div>
 

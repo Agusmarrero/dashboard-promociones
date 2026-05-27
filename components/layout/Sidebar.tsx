@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import {
   LayoutDashboard,
@@ -10,7 +11,6 @@ import {
   BarChart2,
   Settings,
   LogOut,
-  Fuel,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { signOut } from '@/lib/firebase/auth'
@@ -36,7 +36,7 @@ export function Sidebar() {
   return (
     <aside className="hidden lg:flex h-screen w-60 flex-col border-r border-slate-200 bg-white">
       <div className="flex h-16 items-center gap-2 px-6 border-b border-slate-200">
-        <Fuel className="h-6 w-6 text-blue-600" />
+        <Image src="/assets/icono.png" alt="PromoFlow" width={28} height={28} className="shrink-0" />
         <span className="text-lg font-semibold text-slate-900">PromoFlow</span>
       </div>
 

@@ -22,13 +22,17 @@ export interface Estacion {
 
 export interface Cliente {
   id: string
-  estacionId: string
+  estacionId: string | null
   estacionNombre: string
   nombreContacto: string
   telefonoWhatsapp: string
   email?: string
   activo: boolean
   notas?: string
+  codigoExterno?: string
+  direccion?: string
+  localidad?: string
+  departamento?: string
   creadoEn: Date
 }
 
@@ -36,10 +40,12 @@ export interface Promocion {
   id: string
   nombre: string
   descripcion: string
+  producto?: string
+  precio?: number
   flyerUrl: string
   flyerPath: string
-  vigenciaDesde: Date
-  vigenciaHasta: Date
+  vigenciaDesde?: Date
+  vigenciaHasta?: Date
   estado: EstadoPromocion
   creadaEn: Date
 }

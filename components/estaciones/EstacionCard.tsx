@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { MapPin, Phone, Building2 } from 'lucide-react'
 import type { Estacion } from '@/types'
 import { Badge } from '@/components/ui/badge'
@@ -13,7 +14,10 @@ interface EstacionCardProps {
 
 export function EstacionCard({ estacion }: EstacionCardProps) {
   return (
-    <Card className="hover:shadow-md transition-shadow">
+    <Card className="overflow-hidden hover:shadow-md transition-shadow">
+      <div className="relative h-32 bg-slate-100">
+        <Image src="/assets/estacion.png" alt="Estación" fill className="object-cover opacity-80" />
+      </div>
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
           <CardTitle className="text-base font-medium">
