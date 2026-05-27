@@ -2,7 +2,7 @@
 
 import { useState, useEffect, createContext, useContext, ReactNode } from 'react'
 import { User } from 'firebase/auth'
-import { onAuthChange } from '@/lib/firebase/auth'
+import { onAuthChange, isEmailAllowed, signOut } from '@/lib/firebase/auth'
 
 interface AuthContextType {
   user: User | null
@@ -20,7 +20,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const unsubscribe = onAuthChange((user) => {
-      setUser(user)
+      if (user && !isEmailAllowed(user.email)) {
+        signOut()
+        setUser(null)
+      } else {
+        setUser(user)
+      }
       setLoading(false)
     })
 

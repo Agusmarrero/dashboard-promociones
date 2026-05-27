@@ -50,6 +50,35 @@ export interface Promocion {
   creadaEn: Date
 }
 
+export type TipoComercio =
+  | 'OTROS'
+  | 'PROMOCIONAL DIRECTO'
+  | 'Cadenas chicas y super'
+  | 'PROMOCIONALES DIST'
+  | 'FLORERIAS'
+  | 'RESTAURANT'
+  | 'BAZAR'
+  | 'FARMACIA'
+  | 'OTRO'
+
+export interface Comercio {
+  id: string
+  codigoExterno?: string
+  nombre: string
+  tipo: TipoComercio
+  nombreContacto: string
+  telefonoWhatsapp: string
+  email?: string
+  direccion?: string
+  localidad?: string
+  departamento?: string
+  activo: boolean
+  notas?: string
+  latitud?: number
+  longitud?: number
+  creadoEn: Date
+}
+
 export interface Envio {
   id: string
   promocionId: string

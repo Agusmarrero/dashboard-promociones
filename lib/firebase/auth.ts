@@ -10,13 +10,29 @@ import { auth } from './config'
 
 const googleProvider = new GoogleAuthProvider()
 
+const ALLOWED_EMAILS = [
+  'paola.alvarez.suarez@gmail.com',
+  'agustina.marrero99@gmail.com',
+]
+
+export function isEmailAllowed(email: string | null | undefined): boolean {
+  if (!email) return false
+  return ALLOWED_EMAILS.includes(email.toLowerCase())
+}
+
 export async function signInWithGoogle() {
   if (!auth) throw new Error('Firebase Auth not initialized')
-  return signInWithPopup(auth, googleProvider)
+  const result = await signInWithPopup(auth, googleProvider)
+  if (!isEmailAllowed(result.user.email)) {
+    await firebaseSignOut(auth)
+    throw new Error('NO_ACCESS')
+  }
+  return result
 }
 
 export async function signIn(email: string, password: string) {
   if (!auth) throw new Error('Firebase Auth not initialized')
+  if (!isEmailAllowed(email)) throw new Error('NO_ACCESS')
   return signInWithEmailAndPassword(auth, email, password)
 }
 

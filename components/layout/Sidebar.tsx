@@ -11,6 +11,7 @@ import {
   BarChart2,
   Settings,
   LogOut,
+  Store,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { signOut } from '@/lib/firebase/auth'
@@ -20,6 +21,7 @@ import { Separator } from '@/components/ui/separator'
 const navItems = [
   { label: 'Dashboard', href: '/', icon: LayoutDashboard },
   { label: 'Estaciones', href: '/estaciones', icon: MapPin },
+  { label: 'Comercios', href: '/comercios', icon: Store },
   { label: 'Clientes', href: '/clientes', icon: Users },
   { label: 'Promociones', href: '/promociones', icon: Tag },
   { label: 'Reportes', href: '/reportes', icon: BarChart2 },

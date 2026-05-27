@@ -21,8 +21,12 @@ export default function LoginPage() {
     try {
       await signInWithGoogle()
       router.push('/')
-    } catch (err) {
-      setError('No se pudo iniciar sesión con Google')
+    } catch (err: any) {
+      if (err?.message === 'NO_ACCESS') {
+        setError('Tu cuenta no tiene acceso a este panel.')
+      } else {
+        setError('No se pudo iniciar sesión con Google')
+      }
     } finally {
       setGoogleLoading(false)
     }
@@ -36,8 +40,12 @@ export default function LoginPage() {
     try {
       await signIn(email, password)
       router.push('/')
-    } catch (err) {
-      setError('Email o contraseña incorrectos')
+    } catch (err: any) {
+      if (err?.message === 'NO_ACCESS') {
+        setError('Tu cuenta no tiene acceso a este panel.')
+      } else {
+        setError('Email o contraseña incorrectos')
+      }
     } finally {
       setLoading(false)
     }
