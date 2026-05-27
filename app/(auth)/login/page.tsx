@@ -181,7 +181,7 @@ export default function LoginPage() {
       {/* Right panel — video */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-slate-900">
         <video
-          src="/assets/inicio.mp4"
+          src="/assets/video2.mp4"
           autoPlay
           loop
           muted
