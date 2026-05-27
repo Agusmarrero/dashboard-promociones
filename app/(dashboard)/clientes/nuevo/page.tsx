@@ -22,7 +22,7 @@ export default function NuevoClientePage() {
     try {
       const clienteId = await create(data)
       if (!clienteId) throw new Error('No se pudo crear el cliente')
-      await marcarComoCliente(data.estacionId, clienteId)
+      if (data.estacionId) await marcarComoCliente(data.estacionId, clienteId)
       toast.success('Cliente creado correctamente')
       router.push(`/clientes/${clienteId}`)
     } catch {
