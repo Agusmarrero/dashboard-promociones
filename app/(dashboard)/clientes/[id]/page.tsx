@@ -65,7 +65,7 @@ export default function ClienteDetailPage({
   const handleDelete = async () => {
     if (!cliente) return
     try {
-      await desmarcarComoCliente(cliente.estacionId)
+      if (cliente.estacionId) await desmarcarComoCliente(cliente.estacionId)
       await remove(id)
       toast.success('Cliente eliminado correctamente')
       router.push('/clientes')
