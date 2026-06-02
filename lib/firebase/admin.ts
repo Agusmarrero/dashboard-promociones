@@ -21,6 +21,7 @@ export function getAdminDb() {
 }
 
 export function isAuthorized(req: NextRequest): boolean {
-  const key = req.headers.get('x-api-key')
-  return !!process.env.POWERBI_API_KEY && key === process.env.POWERBI_API_KEY
+  const headerKey = req.headers.get('x-api-key')
+  const queryKey = req.nextUrl.searchParams.get('key')
+  return !!process.env.POWERBI_API_KEY && (headerKey === process.env.POWERBI_API_KEY || queryKey === process.env.POWERBI_API_KEY)
 }
